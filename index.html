@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhatsApp IA — Votre client écrit à 22 h. Vous répondez à 9 h. C'est fini.</title>
+<meta name="description" content="WhatsApp IA : l'assistant qui répond à vos clients sur WhatsApp 24 h/24 — questions fréquentes, horaires, prise de rendez-vous, rappels. Essai gratuit 14 jours. Standard 49 €/mois, Pro 99 €/mois.">
+<meta property="og:title" content="WhatsApp IA — répondez à vos clients 24 h/24, même endormi">
+<meta property="og:description" content="L'assistant IA qui répond à vos clients sur WhatsApp : rendez-vous, horaires, commandes. Essai gratuit 14 jours.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2325D366'/%3E%3Cpath d='M25 30h30a12 12 0 0 1 12 12v6a12 12 0 0 1-12 12H25z' fill='none' stroke='%23101a14' stroke-width='6'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#101a14;            /* anthracite vert profond */
+    --bg-2:#0b120e;
+    --card:#16221a;
+    --card-2:#1a2a20;
+    --line:#23352a;
+    --green:#25D366;         /* vert WhatsApp officiel */
+    --green-2:#1eb85a;
+    --green-deep:#0e5c33;
+    --ink:#0b141a;
+    --text:#eef4ef;
+    --muted:#9db3a6;
+    --bubble-in:#1e2d23;
+    --bubble-out:#25D366;
+    --chip:#123a24;
+    --font:'Inter',-apple-system,'Helvetica Neue',Segoe UI,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--text);font-family:var(--font);
+    line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  ::selection{background:var(--green);color:var(--ink)}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+  a{color:var(--green);text-decoration:none}
+  img{max-width:100%}
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;background:rgba(16,26,20,.85);
+    backdrop-filter:blur(12px);border-bottom:1px solid var(--line);
+  }
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;color:var(--text)}
+  .logo{width:34px;height:34px;border-radius:50%;background:var(--green);display:grid;place-items:center}
+  .logo svg{width:20px;height:20px}
+  .nav-links{display:flex;align-items:center;gap:26px;font-size:14.5px;font-weight:500}
+  .nav-links a{color:var(--muted);transition:color .2s}
+  .nav-links a:hover{color:var(--text)}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    background:var(--green);color:var(--ink);font-weight:700;border:none;cursor:pointer;
+    border-radius:999px;padding:13px 26px;font-size:15.5px;font-family:var(--font);
+    transition:transform .15s,box-shadow .2s,background .2s;
+  }
+  .btn:hover{background:#2ee872;transform:translateY(-1px);box-shadow:0 10px 30px rgba(37,211,102,.28)}
+  .btn.ghost{background:transparent;color:var(--text);border:1.5px solid var(--line)}
+  .btn.ghost:hover{background:var(--card);box-shadow:none}
+  .btn.big{padding:16px 32px;font-size:16.5px}
+  .btn:disabled{opacity:.6;cursor:wait;transform:none}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;padding:88px 0 96px;overflow:hidden}
+  .hero::before{
+    content:"";position:absolute;top:-220px;right:-160px;width:640px;height:640px;border-radius:50%;
+    background:radial-gradient(circle,rgba(37,211,102,.14),transparent 65%);pointer-events:none;
+  }
+  .hero::after{
+    content:"";position:absolute;bottom:-260px;left:-180px;width:600px;height:600px;border-radius:50%;
+    background:radial-gradient(circle,rgba(37,211,102,.07),transparent 65%);pointer-events:none;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;position:relative;z-index:2}
+  .kicker{
+    display:inline-flex;align-items:center;gap:8px;background:var(--chip);color:var(--green);
+    border:1px solid rgba(37,211,102,.3);border-radius:999px;padding:7px 14px;
+    font-size:13px;font-weight:600;letter-spacing:.02em;margin-bottom:22px;
+  }
+  .kicker .dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  h1{
+    font-size:clamp(34px,4.6vw,56px);line-height:1.08;font-weight:900;letter-spacing:-.02em;
+  }
+  h1 .hl{color:var(--green)}
+  .hero-sub{margin:22px 0 34px;font-size:18px;color:var(--muted);max-width:520px}
+  .hero-sub b{color:var(--text);font-weight:600}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .hero-note{margin-top:16px;font-size:13.5px;color:var(--muted)}
+  .hero-note b{color:var(--green);font-weight:600}
+
+  /* ---------- Téléphone (mockup décoratif) ---------- */
+  .phone{
+    position:relative;width:min(340px,88%);margin:0 auto;background:#0b141a;
+    border:8px solid #1b2a21;border-radius:42px;box-shadow:0 40px 90px rgba(0,0,0,.55);
+  }
+  .phone-notch{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:110px;height:22px;background:#1b2a21;border-radius:999px;z-index:5}
+  .phone-screen{border-radius:34px;overflow:hidden;background:#0e1713}
+  .phone-bar{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 10px;font-size:11.5px;color:var(--muted);background:#0e1713}
+  .phone-head{
+    display:flex;align-items:center;gap:10px;padding:10px 14px;background:#101c16;border-bottom:1px solid var(--line);
+  }
+  .avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--green),#128C7E);display:grid;place-items:center;font-weight:800;font-size:15px;color:var(--ink)}
+  .phone-head .who{font-size:13.5px;font-weight:700}
+  .phone-head .st{font-size:11px;color:var(--green)}
+  .chat{display:flex;flex-direction:column;gap:7px;padding:14px 12px 10px;min-height:300px}
+  .bubble{
+    max-width:82%;padding:8px 12px;border-radius:14px;font-size:12.8px;line-height:1.45;
+    position:relative;box-shadow:0 1px 1px rgba(0,0,0,.25);
+  }
+  .bubble.in{background:var(--bubble-in);color:#dce9e0;align-self:flex-start;border-bottom-left-radius:5px}
+  .bubble.out{background:var(--bubble-out);color:var(--ink);align-self:flex-end;border-bottom-right-radius:5px;font-weight:500}
+  .bubble .t{display:block;text-align:right;font-size:9.5px;color:inherit;opacity:.55;margin-top:2px;font-weight:600}
+  .tick{color:#0b141a;opacity:.75}
+  .typing{display:inline-flex;gap:4px;align-items:center;padding:4px 2px}
+  .typing span{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:typing 1.2s infinite}
+  .typing span:nth-child(2){animation-delay:.18s}
+  .typing span:nth-child(3){animation-delay:.36s}
+  @keyframes typing{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-4px);opacity:1}}
+  .phone-input{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#101c16;border-top:1px solid var(--line)}
+  .phone-input .field{flex:1;background:#1a2a20;border-radius:999px;padding:9px 14px;font-size:12px;color:var(--muted)}
+  .phone-input .mic{width:32px;height:32px;border-radius:50%;background:var(--green);display:grid;place-items:center}
+  .phone-input .mic svg{width:15px;height:15px;fill:var(--ink)}
+  .badge-rdv{
+    display:flex;align-items:center;gap:8px;background:var(--chip);border:1px solid rgba(37,211,102,.35);
+    color:var(--green);font-size:11.5px;font-weight:600;border-radius:10px;padding:8px 12px;margin:6px 12px 14px;
+  }
+
+  /* ---------- Bandes / sections ---------- */
+  section{padding:84px 0;position:relative}
+  .bande{
+    background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  .bande-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .bande-item{display:flex;gap:14px;align-items:flex-start}
+  .bande-item .ic{flex:none;width:42px;height:42px;border-radius:12px;background:var(--card-2);display:grid;place-items:center;font-size:20px}
+  .bande-item h3{font-size:15.5px;font-weight:700;margin-bottom:4px}
+  .bande-item p{font-size:14px;color:var(--muted)}
+
+  .sec-head{max-width:640px;margin:0 auto 56px;text-align:center}
+  .sec-head h2{font-size:clamp(28px,3.4vw,40px);font-weight:900;letter-spacing:-.015em;line-height:1.15}
+  .sec-head h2 .hl{color:var(--green)}
+  .sec-head p{margin-top:14px;color:var(--muted);font-size:17px}
+
+  /* ---------- Scénarios ---------- */
+  .scen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:start}
+  .scen{
+    background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;
+    transition:transform .25s,border-color .25s;
+  }
+  .scen:hover{transform:translateY(-4px);border-color:rgba(37,211,102,.4)}
+  .scen-head{display:flex;align-items:center;gap:10px;padding:15px 18px;border-bottom:1px solid var(--line);background:var(--bg-2)}
+  .scen-head .emo{font-size:20px}
+  .scen-head .nm{font-size:14px;font-weight:700}
+  .scen-head .act{font-size:12px;color:var(--muted)}
+  .scen .chat{min-height:250px;padding:14px 12px}
+  .scen .bubble{font-size:12.3px}
+  .scen .outcome{
+    display:flex;align-items:center;gap:9px;margin:0 14px 16px;padding:10px 13px;
+    background:var(--chip);border:1px solid rgba(37,211,102,.3);border-radius:12px;
+    color:var(--green);font-size:13px;font-weight:600;
+  }
+  .scen .outcome svg{flex:none;width:17px;height:17px}
+  .scen .horaire{font-size:10px;color:var(--muted);text-align:right;margin:0 14px 4px}
+
+  /* ---------- Fonctionnement ---------- */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;counter-reset:step}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:30px 26px;position:relative;transition:border-color .25s}
+  .step:hover{border-color:rgba(37,211,102,.4)}
+  .step .num{
+    width:46px;height:46px;border-radius:14px;background:var(--green);color:var(--ink);
+    display:grid;place-items:center;font-weight:900;font-size:20px;margin-bottom:18px;
+  }
+  .step h3{font-size:18px;font-weight:800;margin-bottom:10px}
+  .step p{color:var(--muted);font-size:14.5px}
+  .step ul{margin-top:12px;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+  .step li{font-size:13.5px;color:var(--muted)}
+  .step li b{color:var(--text);font-weight:600}
+  .flux-note{
+    margin-top:34px;background:var(--bg-2);border:1px dashed var(--line);border-radius:16px;
+    padding:18px 24px;font-size:14.5px;color:var(--muted);text-align:center;
+  }
+  .flux-note b{color:var(--green)}
+
+  /* ---------- Offres ---------- */
+  .offres-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:stretch}
+  .offre{
+    background:var(--card);border:1px solid var(--line);border-radius:24px;padding:34px 28px;
+    display:flex;flex-direction:column;position:relative;transition:transform .25s,border-color .25s;
+  }
+  .offre:hover{transform:translateY(-4px)}
+  .offre.pop{
+    border:2px solid var(--green);background:linear-gradient(180deg,#143022 0%,var(--card) 60%);
+    box-shadow:0 24px 60px rgba(37,211,102,.14);
+  }
+  .flag{
+    position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+    background:var(--green);color:var(--ink);font-size:12px;font-weight:800;
+    padding:6px 16px;border-radius:999px;white-space:nowrap;letter-spacing:.03em;
+  }
+  .offre .nom{font-size:17px;font-weight:800}
+  .offre .desc{font-size:14px;color:var(--muted);margin-top:6px;min-height:44px}
+  .offre .prix{display:flex;align-items:baseline;gap:6px;margin:20px 0 4px}
+  .offre .prix .montant{font-size:44px;font-weight:900;letter-spacing:-.02em}
+  .offre .prix .per{color:var(--muted);font-size:14.5px}
+  .offre .gratuit{font-size:44px;font-weight:900;color:var(--green);letter-spacing:-.02em;margin:20px 0 4px}
+  .offre ul{list-style:none;margin:18px 0 26px;display:flex;flex-direction:column;gap:11px;flex:1}
+  .offre li{display:flex;gap:10px;font-size:14px;color:#d5e2d9;align-items:flex-start}
+  .offre li::before{
+    content:"";flex:none;width:18px;height:18px;margin-top:1px;border-radius:50%;
+    background:rgba(37,211,102,.18);border:1.5px solid var(--green);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2325D366' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+    background-size:10px;background-position:center;background-repeat:no-repeat;
+  }
+  .offre li.muted-li{color:var(--muted)}
+  .offre .btn{width:100%;margin-top:auto}
+  .offre.pop .btn{background:var(--green)}
+  .install-note{
+    margin-top:40px;background:var(--card);border:1px solid var(--line);border-radius:20px;
+    padding:28px 32px;display:flex;gap:22px;align-items:center;flex-wrap:wrap;
+  }
+  .install-note .ic{flex:none;width:54px;height:54px;border-radius:16px;background:var(--card-2);display:grid;place-items:center;font-size:26px}
+  .install-note h3{font-size:19px;font-weight:800;margin-bottom:6px}
+  .install-note p{color:var(--muted);font-size:14.5px;flex:1;min-width:260px}
+  .install-note .prix-uni{font-size:26px;font-weight:900;color:var(--green);white-space:nowrap}
+  .install-note .sous{font-size:12.5px;color:var(--muted)}
+
+  /* ---------- Formulaire ---------- */
+  .form-sec{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
+  .form-side h2{font-size:clamp(26px,3vw,36px);font-weight:900;letter-spacing:-.015em;line-height:1.15}
+  .form-side h2 .hl{color:var(--green)}
+  .form-side p{margin-top:14px;color:var(--muted);font-size:16px}
+  .form-side ul{list-style:none;margin-top:24px;display:flex;flex-direction:column;gap:13px}
+  .form-side li{display:flex;gap:12px;font-size:14.5px;color:#d5e2d9;align-items:flex-start}
+  .form-side li .ic{flex:none;width:26px;height:26px;border-radius:8px;background:var(--chip);display:grid;place-items:center;font-size:13px}
+  .form-box{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:34px}
+  .form-box label{display:block;font-size:13.5px;font-weight:700;margin:18px 0 7px;color:#d5e2d9}
+  .form-box label:first-of-type{margin-top:0}
+  .form-box input,.form-box select,.form-box textarea{
+    width:100%;background:var(--bg-2);border:1.5px solid var(--line);border-radius:12px;
+    color:var(--text);font-family:var(--font);font-size:15px;padding:13px 15px;outline:none;transition:border-color .2s;
+  }
+  .form-box input:focus,.form-box select:focus,.form-box textarea:focus{border-color:var(--green)}
+  .form-box select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239db3a6' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:16px}
+  .form-box textarea{resize:vertical;min-height:90px}
+  .field-err{color:#ff7b7b;font-size:12.5px;margin-top:5px;display:none}
+  .field-err.show{display:block}
+  .form-box .btn{width:100%;margin-top:24px}
+  .secure-note{margin-top:14px;font-size:13px;color:var(--muted);text-align:center}
+  .secure-note b{color:var(--green)}
+  .success-box{display:none;text-align:center;padding:20px 8px}
+  .success-box .check{
+    width:74px;height:74px;margin:0 auto 20px;border-radius:50%;background:var(--green);
+    display:grid;place-items:center;color:var(--ink);font-size:34px;font-weight:900;
+    box-shadow:0 16px 40px rgba(37,211,102,.3);
+  }
+  .success-box h3{font-size:24px;font-weight:900;margin-bottom:10px}
+  .success-box p{color:var(--muted);font-size:15px;max-width:420px;margin:0 auto}
+  .success-box .next{margin-top:22px;color:var(--text);font-weight:700}
+  .success-box ul{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted)}
+  .success-box ul b{color:var(--green)}
+
+  /* ---------- Avant de vous lancer ---------- */
+  .honest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .honest{
+    background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px 26px;
+  }
+  .honest .tag{
+    display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;letter-spacing:.04em;
+    color:#ffb36b;border:1px solid rgba(255,179,107,.35);background:rgba(255,179,107,.07);
+    border-radius:999px;padding:6px 13px;margin-bottom:16px;
+  }
+  .honest h3{font-size:16.5px;font-weight:800;margin-bottom:9px}
+  .honest p{font-size:14px;color:var(--muted)}
+  .honest p b{color:var(--text)}
+  .honest .exemple{margin-top:12px;background:var(--bg-2);border-radius:10px;padding:11px 14px;font-size:13px;color:#d5e2d9;border:1px solid var(--line)}
+  .honest .exemple b{color:var(--green)}
+  .honest-note{margin-top:34px;text-align:center;font-size:13.5px;color:var(--muted)}
+  .honest-note a{font-weight:600}
+
+  /* ---------- FAQ ---------- */
+  .faq{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+  details{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    transition:border-color .2s;
+  }
+  details[open]{border-color:rgba(37,211,102,.45)}
+  summary{
+    list-style:none;cursor:pointer;padding:19px 24px;font-size:15.5px;font-weight:700;
+    display:flex;justify-content:space-between;align-items:center;gap:16px;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary .plus{flex:none;width:26px;height:26px;border-radius:50%;background:var(--card-2);display:grid;place-items:center;color:var(--green);font-size:17px;transition:transform .25s}
+  details[open] summary .plus{transform:rotate(45deg)}
+  details .rep{padding:0 24px 20px;color:var(--muted);font-size:14.5px}
+  details .rep b{color:var(--text)}
+  details .rep ul{padding-left:20px;margin-top:8px;display:flex;flex-direction:column;gap:6px}
+
+  /* ---------- CTA final ---------- */
+  .cta-final{text-align:center;padding:90px 0 100px}
+  .cta-final h2{font-size:clamp(28px,3.6vw,44px);font-weight:900;letter-spacing:-.015em;line-height:1.12;max-width:640px;margin:0 auto}
+  .cta-final h2 .hl{color:var(--green)}
+  .cta-final p{margin:18px auto 32px;color:var(--muted);font-size:17px;max-width:520px}
+
+  /* ---------- Footer ---------- */
+  footer{border-top:1px solid var(--line);padding:40px 0 46px;background:var(--bg-2)}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;font-size:13.5px;color:var(--muted)}
+  .foot .brand{font-size:15px}
+  .foot a{color:var(--muted)}
+  .foot a:hover{color:var(--green)}
+
+  /* ---------- Reveal ---------- */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+    .typing span,.kicker .dot{animation:none}
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:960px){
+    .hero-grid,.form-grid{grid-template-columns:1fr;gap:44px}
+    .bande-grid,.scen-grid,.steps,.offres-grid,.honest-grid{grid-template-columns:1fr}
+    .scen-grid{gap:20px}
+    .nav-links{display:none}
+    .phone{width:min(330px,90%)}
+    section{padding:64px 0}
+  }
+  @media (max-width:560px){
+    .offre.pop{order:-1}
+    .offres-grid{display:flex;flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav>
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" style="color:var(--text)">
+      <span class="logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#101a14" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      </span>
+      WhatsApp&nbsp;IA
+    </a>
+    <div class="nav-links">
+      <a href="#scenarios">Cas concrets</a>
+      <a href="#fonctionnement">Comment ça marche</a>
+      <a href="#offres">Offres</a>
+      <a href="#avant">Avant de vous lancer</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="btn" href="#essai" style="padding:11px 22px;font-size:14.5px">Essai gratuit 14 jours</a>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="kicker"><span class="dot"></span> L'assistant WhatsApp des TPE &amp; artisans</span>
+      <h1>Votre client écrit à 22&nbsp;h.<br><span class="hl">Vous répondez à 9&nbsp;h.</span><br>C'est fini.</h1>
+      <p class="hero-sub">Vos clients vivent sur WhatsApp — et ils écrivent <b>le soir, le week-end, pendant vos chantiers</b>. WhatsApp&nbsp;IA répond à leur place, en français, avec vos horaires et vos tarifs : il prend les rendez-vous, confirme les commandes et vous transfère ce qui est important.</p>
+      <div class="hero-cta">
+        <a class="btn big" href="#essai">Essayer gratuitement 14 jours</a>
+        <a class="btn ghost big" href="#offres">Voir les offres</a>
+      </div>
+      <p class="hero-note">✓ Essai gratuit 14 jours · ✓ Sans engagement · ✓ Résiliable à tout moment</p>
+    </div>
+
+    <!-- Téléphone décoratif : illustration de conversation -->
+    <div class="phone reveal" aria-hidden="true">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <div class="phone-bar"><span>22:14</span><span>🔋 84&nbsp;%</span></div>
+        <div class="phone-head">
+          <span class="avatar">P</span>
+          <div>
+            <div class="who">Plomberie Martin</div>
+            <div class="st">● en ligne</div>
+          </div>
+        </div>
+        <div class="chat">
+          <div class="bubble in">Bonsoir, je viens de casser un robinet, l'eau coule partout. Vous pouvez passer demain matin&nbsp;?</div>
+          <div class="bubble out">Bonsoir, pas de panique : coupez l'eau sous l'évier et enveloppez la vanne d'un torchon. Oui, nous pouvons passer demain à 8&nbsp;h&nbsp;30. Je réserve&nbsp;?<span class="t">22:14 ✓✓</span></div>
+          <div class="bubble in">Oui, merci énormément&nbsp;!</div>
+          <div class="bubble out">C'est noté : passage demain à 8&nbsp;h&nbsp;30. Vous recevrez un rappel la veille au soir. Bonne soirée&nbsp;!<span class="t">22:14 ✓✓</span></div>
+          <div class="bubble in"><span class="typing"><span></span><span></span><span></span></span></div>
+        </div>
+        <div class="badge-rdv">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          RDV pris à 22&nbsp;h&nbsp;14 — pendant que vous dormiez
+        </div>
+        <div class="phone-input">
+          <div class="field">Écrivez un message…</div>
+          <div class="mic"><svg viewBox="0 0 24 24"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-2.08A7 7 0 0 0 19 12h-2z"/></svg></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== BANDE DOULEUR ===================== -->
+<div class="bande">
+  <div class="wrap bande-grid" style="padding:44px 24px">
+    <div class="bande-item reveal">
+      <span class="ic">📵</span>
+      <div>
+        <h3>Un client prêt à payer… qui s'évanouit</h3>
+        <p>« Bonjour, vous êtes ouvert samedi ? » sans réponse à 20 h : il appelle le concurrent, ou il oublie. 9 fois sur 10, vous ne le reverrez jamais.</p>
+      </div>
+    </div>
+    <div class="bande-item reveal">
+      <span class="ic">🔁</span>
+      <div>
+        <h3>Les mêmes questions, 30 fois par jour</h3>
+        <p>« C'est combien ? », « Vous livrez ? », « Il reste une place ? » : votre journée se découpe en réponses répétées que vous connaissez par cœur.</p>
+      </div>
+    </div>
+    <div class="bande-item reveal">
+      <span class="ic">😴</span>
+      <div>
+        <h3>Le rendez-vous que vous ne verrez jamais</h3>
+        <p>Un RDV confirmé l'après-midi, oublié le lendemain : un créneau perdu, un client mécontent, du chiffre d'affaires qui part en fumée.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SCÉNARIOS ===================== -->
+<section id="scenarios">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Trois soirées ordinaires, <span class="hl">trois clients gardés</span></h2>
+      <p>Ce qui se passe vraiment sur le WhatsApp d'un artisan, d'une coiffeuse et d'un restaurant — quand l'IA est là.</p>
+    </div>
+
+    <div class="scen-grid">
+      <!-- Artisan -->
+      <article class="scen reveal">
+        <div class="scen-head">
+          <span class="emo">🔧</span>
+          <div>
+            <div class="nm">Artisan — Plomberie</div>
+            <div class="act">23 h 47 · urgence chaudière</div>
+          </div>
+        </div>
+        <div class="chat">
+          <div class="bubble in">Bonsoir, ma chaudière ne s'allume plus et j'ai deux enfants. C'est grave, non&nbsp;?</div>
+          <div class="bubble out">Bonsoir, je comprends l'urgence. Vérifiez d'abord le disjoncteur et la pression (aiguille entre 1 et 1,5&nbsp;bar). Je peux vous passer demain matin dès 8&nbsp;h&nbsp;30. Je réserve&nbsp;?</div>
+          <div class="bubble in">Oui, faites vite s'il vous plaît.</div>
+          <div class="bubble out">C'est noté : intervention demain 8&nbsp;h&nbsp;30. Rappel automatique ce soir à 20&nbsp;h. Bonne soirée.<span class="t">23:48 ✓✓</span></div>
+        </div>
+        <div class="horaire">Réponse en 40 secondes, à 23 h 48</div>
+        <div class="outcome">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          Intervention de 390&nbsp;€ réservée à minuit moins le quart
+        </div>
+      </article>
+
+      <!-- Coiffeur -->
+      <article class="scen reveal">
+        <div class="scen-head">
+          <span class="emo">✂️</span>
+          <div>
+            <div class="nm">Coiffeuse — Salon de quartier</div>
+            <div class="act">12 h 15 · demande samedi</div>
+          </div>
+        </div>
+        <div class="chat">
+          <div class="bubble in">Bonjour, une coupe + balayage samedi, il reste une place&nbsp;?</div>
+          <div class="bubble out">Bonjour&nbsp;! Samedi il reste 9&nbsp;h&nbsp;30, 11&nbsp;h ou 14&nbsp;h. Le balayage est compté dès 65&nbsp;€. Quelle heure vous arrange&nbsp;?</div>
+          <div class="bubble in">11 h c'est parfait.</div>
+          <div class="bubble out">Réservé : samedi 11&nbsp;h, coupe + balayage, au nom de Claire. Un rappel vous sera envoyé 24&nbsp;h avant. À samedi&nbsp;! ✂️<span class="t">12:16 ✓✓</span></div>
+        </div>
+        <div class="horaire">Réponse en 1 minute, pendant le service du midi</div>
+        <div class="outcome">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          Créneau de 95&nbsp;€ réservé + rappel automatique
+        </div>
+      </article>
+
+      <!-- Restaurant -->
+      <article class="scen reveal">
+        <div class="scen-head">
+          <span class="emo">🍽️</span>
+          <div>
+            <div class="nm">Restaurant — Table de 20 couverts</div>
+            <div class="act">19 h 40 · table pour 4 ce soir</div>
+          </div>
+        </div>
+        <div class="chat">
+          <div class="bubble in">Bonsoir, vous avez encore une table pour 4 ce soir vers 21 h&nbsp;?</div>
+          <div class="bubble out">Bonsoir&nbsp;! Ce soir il reste une table pour 4 à 21&nbsp;h. Je la bloque&nbsp;?</div>
+          <div class="bubble in">Oui au nom de Martin, merci.</div>
+          <div class="bubble out">Table bloquée pour 4 personnes à 21&nbsp;h au nom de Martin. En cas d'imprévu, répondez simplement ANNULER. À tout à l'heure&nbsp;!<span class="t">19:41 ✓✓</span></div>
+        </div>
+        <div class="horaire">Réponse en 30 secondes, en plein service</div>
+        <div class="outcome">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          Table de 4 réservée — zéro coup de téléphone
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FONCTIONNEMENT ===================== -->
+<section id="fonctionnement" class="bande">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Comment ça marche&nbsp;? <span class="hl">Trois étages, zéro jargon</span></h2>
+      <p>Votre WhatsApp reste votre WhatsApp. Nous posons un assistant dessus, branché sur l'API officielle de Meta.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="num">1</div>
+        <h3>Branchement API Meta</h3>
+        <p>Nous connectons votre numéro à l'API officielle WhatsApp Business (Meta). Votre téléphone et votre application WhatsApp continuent de fonctionner normalement.</p>
+        <ul>
+          <li><b>Numéro dédié</b> (ou migration du vôtre, accompagnée)</li>
+          <li><b>Validation Meta Business</b> gérée pour vous</li>
+          <li><b>Messages modèles</b> (rappel RDV, confirmation) approuvés par Meta</li>
+        </ul>
+      </div>
+      <div class="step reveal">
+        <div class="num">2</div>
+        <h3>Règles IA sur mesure</h3>
+        <p>Nous configurons l'IA à partir de <b>vos</b> informations : horaires, tarifs, zone d'intervention, questions fréquentes, conditions de commande.</p>
+        <ul>
+          <li>Réponses en français, dans votre ton</li>
+          <li>Prise de rendez-vous et de commandes selon vos règles</li>
+          <li>Vous relisez et modifiez tout à tout moment</li>
+        </ul>
+      </div>
+      <div class="step reveal">
+        <div class="num">3</div>
+        <h3>Transfert humain</h3>
+        <p>Si l'IA ne sait pas répondre, si le client insiste ou demande « quelqu'un en vrai », la conversation vous est <b>transférée instantanément</b>, sur votre téléphone.</p>
+        <ul>
+          <li>Vous reprenez la main où l'IA s'arrête</li>
+          <li>Alertes en cas de demande urgente</li>
+          <li>Vous décidez toujours, en dernier ressort</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="flux-note reveal">En résumé : <b>l'IA répond 24 h/24</b> → vous dormez, vous travaillez, vous servez vos clients → <b>elle vous transfère ce qui compte</b>. Vous n'êtes jamais contourné, seulement déchargé.</p>
+  </div>
+</section>
+
+<!-- ===================== OFFRES ===================== -->
+<section id="offres">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Des offres simples, <span class="hl">au prix d'un abonnement mobile</span></h2>
+      <p>Moins cher qu'une heure de main-d'œuvre. Sans engagement, résiliable à tout moment. Les frais facturés par Meta (par conversation) s'ajoutent — détail dans « Avant de vous lancer ».</p>
+    </div>
+
+    <div class="offres-grid">
+      <!-- Essai -->
+      <div class="offre reveal">
+        <div class="nom">Essai gratuit</div>
+        <div class="desc">Testez l'IA sur votre WhatsApp, en conditions réelles, pendant 14 jours.</div>
+        <div class="gratuit">0&nbsp;€</div>
+        <div class="prix"><span class="per" style="margin-bottom:14px">pendant 14 jours</span></div>
+        <ul>
+          <li>Réponses IA aux questions fréquentes</li>
+          <li>Horaires et informations pratiques</li>
+          <li>Branchement et configuration offerts</li>
+          <li class="muted-li">Sans carte bancaire, sans engagement</li>
+        </ul>
+        <a class="btn ghost" href="#essai">Commencer l'essai →</a>
+      </div>
+
+      <!-- Standard -->
+      <div class="offre reveal">
+        <div class="nom">Standard</div>
+        <div class="desc">L'essentiel : l'IA répond, informe et prend les rendez-vous.</div>
+        <div class="prix"><span class="montant">49&nbsp;€</span><span class="per">/ mois</span></div>
+        <ul>
+          <li>Réponses automatiques IA aux questions fréquentes</li>
+          <li>Horaires, tarifs, informations pratiques</li>
+          <li>Prise de rendez-vous automatique</li>
+          <li>Tableau de bord : conversations et statistiques</li>
+          <li class="muted-li">Sans engagement, résiliable à tout moment</li>
+        </ul>
+        <a class="btn ghost" href="#essai">Choisir Standard →</a>
+      </div>
+
+      <!-- Pro -->
+      <div class="offre pop reveal">
+        <span class="flag">★ LE PLUS CHOISI</span>
+        <div class="nom">Pro</div>
+        <div class="desc">L'offre complète : l'IA gère le flux, vous gérez l'important.</div>
+        <div class="prix"><span class="montant">99&nbsp;€</span><span class="per">/ mois</span></div>
+        <ul>
+          <li>Tout Standard, plus :</li>
+          <li>Rappels de rendez-vous automatiques (moins de rendez-vous manqués)</li>
+          <li>Prise de commande simple (devis, commandes, réservations)</li>
+          <li>Transfert humain : l'IA vous passe la main en un geste</li>
+          <li>Alertes de demandes urgentes</li>
+          <li>Priorité d'assistance</li>
+        </ul>
+        <a class="btn" href="#essai">Choisir Pro →</a>
+      </div>
+    </div>
+
+    <div class="install-note reveal">
+      <span class="ic">🛠️</span>
+      <div>
+        <h3>Installation — 199&nbsp;€ (paiement unique)</h3>
+        <p>Branchement API Meta, numéro dédié, validation Meta Business, modèles de messages approuvés, configuration de vos règles IA et formation d'une heure. <b>Incluse pendant l'essai gratuit</b> : vous ne payez l'installation que si vous passez en offre payante.</p>
+      </div>
+      <div style="text-align:right">
+        <div class="prix-uni">199&nbsp;€</div>
+        <div class="sous">une seule fois</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FORMULAIRE ESSAI ===================== -->
+<section class="form-sec" id="essai">
+  <div class="wrap form-grid">
+    <div class="form-side reveal">
+      <h2>Lancez votre essai gratuit<br><span class="hl">de 14 jours</span></h2>
+      <p>Racontez-nous votre activité en deux minutes. Nous vous rappelons sous 24&nbsp;h ouvrées, on branche l'essai, et vous voyez par vous-même ce que ça donne sur votre vrai WhatsApp.</p>
+      <ul>
+        <li><span class="ic">⚡</span> Dossier déposé sous 48&nbsp;h, validation Meta en 5 à 10 jours ouvrés — détail dans « Avant de vous lancer »</li>
+        <li><span class="ic">🤝</span> Accompagnement humain, en français, pour l'installation</li>
+        <li><span class="ic">🔒</span> Aucun engagement : à la fin des 14 jours, vous choisissez — ou vous arrêtez</li>
+      </ul>
+    </div>
+
+    <div class="form-box reveal">
+      <form id="trial-form" novalidate>
+        <label for="tf-nom">Votre nom</label>
+        <input type="text" id="tf-nom" placeholder="Ex. : Karim Benali" autocomplete="name">
+        <div class="field-err" id="err-nom"></div>
+
+        <label for="tf-email">Votre email</label>
+        <input type="email" id="tf-email" placeholder="vous@exemple.fr" autocomplete="email">
+        <div class="field-err" id="err-email"></div>
+
+        <label for="tf-activite">Votre activité</label>
+        <input type="text" id="tf-activite" placeholder="Ex. : plombier à Bordeaux, salon de coiffure, restaurant…">
+        <div class="field-err" id="err-activite"></div>
+
+        <label for="tf-offre">Offre qui vous intéresse</label>
+        <select id="tf-offre">
+          <option value="Essai gratuit 14 jours (0 €)" selected>Essai gratuit 14 jours (0 €)</option>
+          <option value="Standard — 49 €/mois">Standard — 49 €/mois</option>
+          <option value="Pro — 99 €/mois (le plus choisi)">Pro — 99 €/mois (le plus choisi)</option>
+          <option value="Je ne sais pas encore — conseillez-moi">Je ne sais pas encore — conseillez-moi</option>
+        </select>
+
+        <label for="tf-msg">Ce que vous aimeriez que l'IA gère (optionnel)</label>
+        <textarea id="tf-msg" placeholder="Ex. : prendre les rendez-vous de dépannage, répondre aux questions de tarifs, envoyer des rappels…"></textarea>
+
+        <div class="field-err" id="form-err" style="margin-top:12px"></div>
+
+        <button type="submit" class="btn big" id="tf-btn">Demander mon essai gratuit →</button>
+        <div class="secure-note">🔒 Réponse sous 24&nbsp;h ouvrées — aucun engagement, essai gratuit 14&nbsp;jours</div>
+      </form>
+
+      <div class="success-box" id="trial-ok">
+        <div class="check">✓</div>
+        <h3>Demande envoyée&nbsp;!</h3>
+        <p>Merci <b id="ok-nom"></b> — votre demande d'essai gratuit est bien enregistrée. Vous recevez une confirmation par email à <b id="ok-email"></b>.</p>
+        <p class="next">Que se passe-t-il maintenant&nbsp;?</p>
+        <ul>
+          <li>1. Nous vous rappelons sous <b>24&nbsp;h ouvrées</b> pour valider votre activité.</li>
+          <li>2. Nous lançons la validation Meta Business et le branchement (<b>5 à 10 jours ouvrés</b>).</li>
+          <li>3. Votre essai de 14 jours démarre dès la mise en service — <b>puis vous choisissez</b>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== AVANT DE VOUS LANCER ===================== -->
+<section id="avant">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Avant de vous lancer, <span class="hl">trois choses à savoir</span></h2>
+      <p>Nous préférons la transparence aux promesses : voici exactement ce qui conditionne une mise en service, et ce que ça coûte vraiment.</p>
+    </div>
+
+    <div class="honest-grid">
+      <div class="honest reveal">
+        <span class="tag">⚠ VALIDATION OBLIGATOIRE</span>
+        <h3>Votre entreprise doit être validée par Meta</h3>
+        <p>L'API officielle exige un <b>compte Meta Business vérifié</b> : justificatifs d'activité (SIRET, RCS ou site web), numéro de téléphone dédié, nom d'affichage validé. Sans cette validation, aucune mise en service n'est possible — c'est une règle de Meta, pas de nous.</p>
+        <div class="exemple"><b>Bon à savoir :</b> nous préparons tout le dossier avec vous. C'est inclus dans l'installation — mais c'est à vous de fournir les documents.</div>
+      </div>
+
+      <div class="honest reveal">
+        <span class="tag">⚠ COÛTS META EN SUS</span>
+        <h3>Meta facture par conversation</h3>
+        <p>Au-delà de votre abonnement, <b>Meta facture chaque conversation</b> initiée par vos clients (service, rappels, marketing) : <b>environ 0,03&nbsp;€ à 0,10&nbsp;€</b> selon le type. Ces frais vous sont facturés directement par Meta, nous n'y touchons rien.</p>
+        <div class="exemple">Exemple réaliste : <b>400 conversations/mois ≈ 15 à 40&nbsp;€</b> selon le type (service ~0,03–0,10&nbsp;€, rappel de RDV ~0,03&nbsp;€). Tarifs publiés par Meta, révisables.</div>
+      </div>
+
+      <div class="honest reveal">
+        <span class="tag">⚠ COMPTEZ 1 À 2 SEMAINES</span>
+        <h3>La mise en service n'est pas instantanée</h3>
+        <p>Validation Meta Business + approbation des messages modèles prennent en général <b>5 à 10 jours ouvrés</b>. Nous lançons toutes les démarches dès votre inscription — mais ne promettez pas à vos clients une réponse IA « dès demain ».</p>
+        <div class="exemple"><b>Notre engagement :</b> dossier déposé sous 48&nbsp;h après votre inscription, suivi quotidien jusqu'à validation.</div>
+      </div>
+    </div>
+
+    <p class="honest-note reveal">Une question avant de vous lancer&nbsp;? Écrivez-nous à <a href="mailto:agentiadeploiement@gmail.com">agentiadeploiement@gmail.com</a> — réponse humaine, en français.</p>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Questions <span class="hl">fréquentes</span></h2>
+    </div>
+
+    <div class="faq reveal">
+      <details>
+        <summary>Puis-je garder mon numéro de téléphone actuel&nbsp;?<span class="plus">+</span></summary>
+        <div class="rep">L'API WhatsApp Business exige un numéro qui n'est <b>pas déjà utilisé</b> par l'application WhatsApp classique ou WhatsApp Business. Deux options : <b>un numéro dédié</b> (quelques euros par mois chez un opérateur, c'est ce que nous recommandons pour ne rien casser) ou la <b>migration de votre numéro actuel</b>, que nous accompagnons pas à pas. Dans les deux cas, vos contacts et vos conversations restent accessibles.</div>
+      </details>
+
+      <details>
+        <summary>L'IA répond-elle vraiment toute seule&nbsp;?<span class="plus">+</span></summary>
+        <div class="rep">Oui — uniquement selon les règles que vous validez : horaires, tarifs, zone d'intervention, questions fréquentes, conditions de commande. Vous relisez et ajustez tout à tout moment. Si un message sort du cadre (montant inhabituel, insatisfaction, urgence), la conversation vous est <b>transférée automatiquement</b>.</div>
+      </details>
+
+      <details>
+        <summary>Et si l'IA ne comprend pas la demande&nbsp;?<span class="plus">+</span></summary>
+        <div class="rep">Deux garde-fous : au-delà d'un nombre de tentatives, ou dès que le client le demande (« je veux parler à quelqu'un »), <b>la conversation bascule vers vous en quelques secondes</b>, sur votre téléphone, avec l'historique complet. L'IA ne tourne jamais en rond : elle s'arrête, et vous prenez le relais.</div>
+      </details>
+
+      <details>
+        <summary>Combien ça coûte vraiment, tout compris&nbsp;?<span class="plus">+</span></summary>
+        <div class="rep">Pour une offre payante :
+          <ul>
+            <li><b>Installation : 199&nbsp;€</b> une seule fois (offerte pendant l'essai gratuit) ;</li>
+            <li><b>Abonnement : 49&nbsp;€ ou 99&nbsp;€/mois</b>, sans engagement ;</li>
+            <li><b>Frais Meta : ~0,03 à 0,10&nbsp;€ par conversation</b>, facturés par Meta selon le volume réel (comptez ~15 à 40&nbsp;€/mois pour 400 conversations).</li>
+          </ul>
+          Un artisan qui prend 15 rendez-vous de plus par mois grâce à l'IA a déjà rentabilisé l'abonnement.</div>
+      </details>
+
+      <details>
+        <summary>Mes clients verront-ils que c'est une IA&nbsp;?<span class="plus">+</span></summary>
+        <div class="rep">L'IA répond comme votre équipe le ferait, avec votre ton. Nous recommandons une <b>transparence simple</b> (« Je suis l'assistant du salon, je transmets à Camille si besoin ») : la plupart des clients n'y voient aucun inconvénient, et ça protège votre réputation. Le choix vous appartient.</div>
+      </details>
+
+      <details>
+        <summary>Est-ce que l'IA remplace mon téléphone&nbsp;?<span class="plus">+</span></summary>
+        <div class="rep">Non, au contraire : elle répond <b>quand vous ne pouvez pas</b> (nuit, chantier, service, week-end), et vous reprenez la main quand vous voulez. Elle ne filtre rien d'important : tout ce qui demande une décision vous est transmis. <b>Vous restez le patron de la conversation.</b></div>
+      </details>
+
+      <details>
+        <summary>Et si je veux arrêter&nbsp;?<span class="plus">+</span></summary>
+        <div class="rep">Sans engagement, <b>résiliable à tout moment, sans frais</b>. Vous gardez votre numéro, vos contacts et vos conversations. Nous désactivons simplement l'assistant : votre WhatsApp redevient ce qu'il était avant, avec un assistant de moins à payer.</div>
+      </details>
+
+      <details>
+        <summary>Qu'en est-il des données et du RGPD&nbsp;?<span class="plus">+</span></summary>
+        <div class="rep">Vos conversations restent sur WhatsApp/Meta, comme aujourd'hui. L'IA traite les messages uniquement pour répondre, selon vos règles ; <b>aucune revente, aucune utilisation publicitaire</b> de vos données. Nous pouvons fournir une clause de traitement des données (DPA) pour votre contrat client.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA FINAL ===================== -->
+<section class="cta-final">
+  <div class="wrap">
+    <h2 class="reveal">La prochaine fois qu'un client écrira à 22&nbsp;h, <span class="hl">ce sera réglé à 22&nbsp;h&nbsp;02.</span></h2>
+    <p class="reveal">Essayez 14 jours, gratuitement. Sans carte bancaire, sans engagement — et vous verrez la différence sur votre vrai WhatsApp.</p>
+    <a class="btn big reveal" href="#essai">Demander mon essai gratuit →</a>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap foot">
+    <a class="brand" href="#top" style="color:var(--text)">
+      <span class="logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#101a14" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      </span>
+      WhatsApp&nbsp;IA
+    </a>
+    <div>Un module de l'agence <b>Agentia</b> — <a href="mailto:agentiadeploiement@gmail.com">agentiadeploiement@gmail.com</a></div>
+    <div>Essai gratuit 14 jours · Sans engagement · Résiliable à tout moment</div>
+  </div>
+</footer>
+
+<script>
+/* ---------- Reveal au scroll (respecte prefers-reduced-motion) ---------- */
+(function () {
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var els = document.querySelectorAll(".reveal");
+  if (!("IntersectionObserver" in window)) { els.forEach(function (e) { e.classList.add("in"); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+  }, { threshold: 0.12 });
+  els.forEach(function (e) { io.observe(e); });
+})();
+
+/* ---------- Formulaire d'essai — envoi réel via EmailJS ---------- */
+(function () {
+  var EMAILJS = {
+    serviceId: "service_cy1ytdb",
+    templateId: "template_xpo58cv",
+    publicKey: "8Pui4ZEqxW2jRVF7h"
+  };
+  var SITE = "WhatsApp IA — Agentia";
+
+  function chargerEmailJS(callback) {
+    if (window.emailjs) { callback(); return; }
+    var s = document.createElement("script");
+    s.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
+    s.onload = function () { try { emailjs.init({ publicKey: EMAILJS.publicKey }); } catch (e) {} callback(); };
+    s.onerror = function () { callback(); };
+    document.head.appendChild(s);
+  }
+
+  var form = document.getElementById("trial-form");
+  if (!form) return;
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var nom = document.getElementById("tf-nom").value.trim();
+    var email = document.getElementById("tf-email").value.trim();
+    var activite = document.getElementById("tf-activite").value.trim();
+    var offre = document.getElementById("tf-offre").value;
+    var msg = document.getElementById("tf-msg").value.trim();
+
+    var errs = { nom: document.getElementById("err-nom"), email: document.getElementById("err-email"), activite: document.getElementById("err-activite"), global: document.getElementById("form-err") };
+    Object.keys(errs).forEach(function (k) { errs[k].textContent = ""; errs[k].classList.remove("show"); });
+
+    if (nom.length < 2) { errs.nom.textContent = "Indiquez votre nom (2 caractères minimum)."; errs.nom.classList.add("show"); return; }
+    if (!email || email.indexOf("@") === -1 || email.indexOf(".") === -1) { errs.email.textContent = "Adresse email invalide."; errs.email.classList.add("show"); return; }
+    if (activite.length < 2) { errs.activite.textContent = "Indiquez votre activité (ex. : plombier à Lyon)."; errs.activite.classList.add("show"); return; }
+
+    var btn = document.getElementById("tf-btn");
+    btn.disabled = true;
+    btn.textContent = "Envoi en cours…";
+
+    var question = "Demande d'essai gratuit 14 jours — WhatsApp IA (agentia). Offre visée : " + offre +
+      ". Activité : " + activite + ". Message : " + (msg || "—") +
+      ". Contacter pour lancer l'essai et la validation Meta Business.";
+
+    chargerEmailJS(function () {
+      if (!window.emailjs) {
+        btn.disabled = false; btn.textContent = "Demander mon essai gratuit →";
+        errs.global.textContent = "Le service d'envoi est momentanément indisponible. Réessayez dans quelques instants, ou écrivez-nous à agentiadeploiement@gmail.com.";
+        errs.global.classList.add("show");
+        return;
+      }
+      emailjs.send(EMAILJS.serviceId, EMAILJS.templateId, {
+        site: SITE,
+        name: nom,
+        email: email,
+        question: question
+      }).then(function () {
+        form.style.display = "none";
+        document.getElementById("ok-nom").textContent = nom;
+        document.getElementById("ok-email").textContent = email;
+        document.getElementById("trial-ok").style.display = "block";
+        window.scrollTo({ top: document.getElementById("essai").offsetTop - 90, behavior: "smooth" });
+      }, function () {
+        btn.disabled = false; btn.textContent = "Demander mon essai gratuit →";
+        errs.global.textContent = "L'envoi a échoué. Vérifiez votre connexion puis réessayez, ou écrivez-nous à agentiadeploiement@gmail.com.";
+        errs.global.classList.add("show");
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

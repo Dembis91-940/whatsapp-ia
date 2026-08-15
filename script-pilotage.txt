@@ -1,0 +1,182 @@
+================================================================================
+WHAT'S APP IA — SCRIPT DE PILOTAGE TÉLÉPHONIQUE (5 minutes)
+Module Agentia · Cible : artisans & TPE françaises
+Usage : appel de prospection froid ou suite à un formulaire de la landing.
+À lire à voix haute en entier au moins 3 fois avant le premier appel.
+Règle d'or : on vend un résultat (ne plus perdre de clients), pas une IA.
+================================================================================
+
+--------------------------------------------------------------------------------
+PRÉPARATION (avant de décrocher) — 2 min
+--------------------------------------------------------------------------------
+• Avoir sous les yeux : nom du prospect, métier, ville, page Facebook/site s'il
+  existe. S'il a un site : repérer une info (spécialité, horaires) à glisser
+  dans l'appel (« je vois que vous intervenez sur X »).
+• Avoir la landing ouverte (whatsapp-ia/index.html) pour orienter l'envoi
+  du lien par WhatsApp après l'appel.
+• Objectif unique de l'appel : DÉCLENCHER L'ESSAI GRATUIT DE 14 JOURS.
+  Tout le reste (devis, démo, « rappelez-moi plus tard ») est secondaire.
+
+--------------------------------------------------------------------------------
+00:00 — ACCROCHE (15 secondes)
+--------------------------------------------------------------------------------
+« Bonjour [Prénom], c'est [Prénom] de l'agence Agentia. Je vous dérange
+30 secondes, promis. Question rapide : quand un client vous écrit sur
+WhatsApp le soir ou le week-end, vous lui répondez tout de suite ou
+plutôt le lendemain ? »
+
+[Attendre LA réponse. Il va dire "le lendemain", "quand j'ai le temps",
+"je réponds le soir". S'il répond autre chose : rebondir sur ce qu'il dit.]
+
+« C'est exactement pour ça que je vous appelle. »
+
+--------------------------------------------------------------------------------
+00:30 — LA DOULEUR (30 secondes) — 1 seule, la plus frappante
+--------------------------------------------------------------------------------
+« Un client qui vous écrit à 21 h, c'est un client prêt à payer. S'il n'a
+pas de réponse, il fait quoi ? Il écrit au concurrent. Ou il oublie.
+Et vous, vous ne le savez même pas. »
+
+[Pause. Le laisser réagir. S'il minimise, enchaîner :]
+« C'est souvent comme ça qu'on perd 2, 3, 5 clients par mois sans jamais
+le voir venir. Vous les comptez, les demandes auxquelles vous ne répondez
+pas dans l'heure ? »
+
+--------------------------------------------------------------------------------
+01:00 — LA SOLUTION, EN UNE PHRASE (20 secondes)
+--------------------------------------------------------------------------------
+« Nous, on installe un assistant sur votre WhatsApp — un numéro dédié,
+branché sur l'API officielle de WhatsApp. Il répond 24 h/24 en français,
+avec VOS horaires et VOS tarifs. Il prend les rendez-vous, il envoie les
+rappels, et dès que ça devient important — ou que le client demande
+quelqu'un en vrai — la conversation arrive sur votre téléphone. Vous
+gardez la main, tout le temps. »
+
+--------------------------------------------------------------------------------
+01:20 — LA PREUVE PAR L'EXEMPLE (45 secondes) — choisir selon le métier
+--------------------------------------------------------------------------------
+ARTISAN (plombier/chauffagiste/électricien) :
+« Concrètement : hier, 23 h 47, un client vous écrit "ma chaudière ne
+s'allume plus". L'assistant répond dans la minute : "coupez le disjoncteur,
+vérifiez la pression" — puis il propose 8 h 30 le lendemain. Le client dit
+oui. C'est une intervention de 300, 400 € de réservée, pendant que vous
+dormiez. »
+
+COIFFEUR / ESTHÉTICIENNE :
+« Concrètement : samedi matin, vous êtes en train de couper les cheveux
+d'une cliente. Une autre écrit "il reste une place pour un balayage
+samedi ?" L'assistant répond avec vos créneaux libres, elle choisit 11 h,
+c'est réservé. Un créneau de 90 € rempli sans que vous lâchiez votre
+ciseau. »
+
+RESTAURANT / COMMERCE :
+« Concrètement : un client écrit à 19 h 40 "vous avez une table pour 4 ce
+soir ?" L'assistant répond, bloque la table, envoie la confirmation. Zéro
+coup de téléphone, zéro appel manqué en plein service. »
+
+[Finir par :] « Vous voyez le genre ? »
+
+--------------------------------------------------------------------------------
+02:05 — PREMIER REFUS / OBJECTION « JE RÉPONDS MOI-MÊME » (45 secondes)
+--------------------------------------------------------------------------------
+« Bien sûr que vous répondez — et vous répondez bien. Mais répondez-vous
+à 23 h ? Le dimanche ? Quand vous êtes sur un chantier, en train de
+servir, en caisse ? Moi je ne vous propose pas de remplacer votre
+réponse : je vous propose de ne plus jamais perdre une demande parce que
+vous étiez occupé à autre chose. Les clients qui veulent un humain, ils
+l'ont — en un geste, la conversation arrive sur votre téléphone. »
+
+--------------------------------------------------------------------------------
+02:50 — LE PRIX (45 secondes) — anticiper, ne pas attendre la question
+--------------------------------------------------------------------------------
+« Et pour que ce soit clair : l'abonnement, c'est 49 € par mois pour
+l'essentiel — réponses, horaires, prise de rendez-vous. Et 99 € par mois
+pour la version complète avec les rappels de rendez-vous automatiques, la
+prise de commande et le transfert humain. C'est le prix d'un abonnement
+mobile. Une seule intervention de dépannage ou trois coupes payent le
+mois. »
+
+OBJECTION « C'EST CHER » :
+« Je comprends. Mais posez-vous la question autrement : un rendez-vous
+manqué par semaine, ou un client perdu par mois, ça vous coûte combien ?
+L'assistant coûte moins qu'une heure de main-d'œuvre — et il travaille
+24 h/24. »
+
+OBJECTION « IL Y A UN ENGAGEMENT ? » :
+« Aucun. Résiliable à tout moment, sans frais. Et surtout : vous essayez
+14 jours gratuitement avant de payer quoi que ce soit. »
+
+--------------------------------------------------------------------------------
+03:35 — LA TRANSPARENCE (40 secondes) — la dire AVANT qu'on ne nous la demande
+--------------------------------------------------------------------------------
+« Deux choses honnêtes à savoir, parce que je préfère les dire tout de
+suite. D'abord : pour brancher un numéro sur l'API officielle, votre
+entreprise doit être validée par Meta — on prépare tout le dossier avec
+vous, mais il faut vos justificatifs, et ça prend en général 5 à 10 jours
+ouvrés. Donc la mise en service, c'est 1 à 2 semaines, pas 48 h.
+Ensuite : Meta facture quelques centimes par conversation — en gros 15 à
+40 € par mois pour 400 conversations, réglés directement à Meta, en plus
+de l'abonnement. Je préfère que vous le sachiez avant, pas après. »
+
+[Ce moment de transparence est VOTRE argument de vente. Les prospects qui
+entendent ça arrêtent de se méfier.]
+
+--------------------------------------------------------------------------------
+04:15 — LA PROPOSITION (30 secondes) — fermer sur l'essai
+--------------------------------------------------------------------------------
+« Voilà ce que je vous propose : l'essai gratuit de 14 jours, sans carte
+bancaire, sans engagement. On branche l'assistant sur un numéro dédié, on
+le configure avec vos horaires, vos tarifs et vos questions fréquentes —
+vous le testez sur de VRAIS clients pendant 14 jours. L'installation est
+offerte pendant l'essai. À la fin, vous voyez les résultats, et vous
+choisissez : on continue à 49 ou 99 € par mois, ou on arrête, et il ne
+vous en coûte rien. »
+
+« Pour lancer ça, il me faut juste : votre activité exacte, et une adresse
+email. Je vous envoie le lien d'inscription par WhatsApp tout de suite. »
+
+[PRENDRE LE NUMÉRO / L'EMAIL. NE PAS RACCROCHER SANS CELA.]
+
+--------------------------------------------------------------------------------
+04:45 — CLÔTURE (15 secondes)
+--------------------------------------------------------------------------------
+« C'est noté. Vous recevez le lien dans deux minutes — cliquez, remplissez
+le formulaire en deux minutes chrono, et je vous rappelle demain pour
+préparer le dossier Meta. Une dernière chose : pensez à un créneau où vous
+êtes disponible la semaine prochaine pour l'appel de configuration —
+mardi ou mercredi, ça vous va ? »
+
+[FIXER LE CRÉNEAU. ENVOYER LE LIEN PAR WHATSAPP. RACROCHER.]
+
+--------------------------------------------------------------------------------
+APRÈS L'APPEL — checklist
+--------------------------------------------------------------------------------
+[ ] Lien de la landing envoyé par WhatsApp dans les 2 minutes.
+[ ] Relance J+1 si pas de formulaire rempli (« je vous garde l'essai ? »).
+[ ] Relance J+3 max, puis stop (pas de harcèlement).
+[ ] Note dans le CRM : métier, objections entendues, créneau de config.
+[ ] Si l'essai est demandé : transmettre à l'équipe intégration (README.md,
+    section 3 — phases A à F) dans la journée.
+
+--------------------------------------------------------------------------------
+CONSIGNES DE TON — à relire avant chaque série d'appels
+--------------------------------------------------------------------------------
+• Parler lentement, comme à un confrère. Jamais de jargon (pas de « API »,
+  pas de « LLM », pas de « webhook »). Dire : numéro branché, assistant,
+  transfert.
+• Ne JAMAIS promettre : mise en service immédiate (c'est 1-2 semaines),
+  coûts « gratuits » (Meta facture par conversation), « l'IA fait tout »
+  (l'humain garde la main).
+• Les prix sont dits à voix haute, sans hésiter : 0 € l'essai, 49 €,
+  99 €/mois, installation 199 € à la bascule payante.
+• Si le prospect hésite sur l'offre : « commencez par l'essai gratuit,
+  vous choisirez après. »
+• Si le prospect demande un devis personnalisé : le donner APRÈS l'essai,
+  jamais avant — l'essai est la porte d'entrée.
+• Interdits : dénigrer les concurrents (ManyChat, etc.), inventer des
+  chiffres de clients, promettre des délais de validation Meta.
+• Objectif mesurable : 1 essai déclenché pour 4 appels aboutis.
+
+--------------------------------------------------------------------------------
+FIN DU SCRIPT — Bonnes ventes !
+================================================================================
