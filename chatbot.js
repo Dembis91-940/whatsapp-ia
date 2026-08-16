@@ -1,6 +1,6 @@
-/* Chatbot widget — El mouskito (Poseidon) — v1.1
+/* Chatbot widget — El mouskito (Poseidon) — v1.0
  * Widget autonome sans backend : réponses préprogrammées + capture de leads.
- * Config : window.CHATBOT_CONFIG = { name, subtitle, accent, accentText, welcome, faqs: [{q, keywords, answer}] }
+ * Config : window.CHATBOT_CONFIG = { name, subtitle, accent, welcome, faqs: [{q, keywords, answer}] }
  */
 (function () {
   if (window.__chatbotLoaded) return;
@@ -10,7 +10,15 @@
   var NAME = cfg.name || 'Assistant';
   var SUB = cfg.subtitle || 'Je réponds à vos questions';
   var ACCENT = cfg.accent || '#4f46e5';
-  var ACCENT_TEXT = cfg.accentText || '#fff';
+  /* Couleur de texte adaptée à la luminance de l'accent (règle 16/08 — écritures lisibles partout) */
+  function lum(hex) {
+    var c = (hex || '').replace('#', '');
+    if (c.length === 3) c = c.split('').map(function (x) { return x + x; }).join('');
+    if (c.length !== 6) return 0.5;
+    var r = parseInt(c.substr(0, 2), 16), g = parseInt(c.substr(2, 2), 16), b = parseInt(c.substr(4, 2), 16);
+    return (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  }
+  var ACCENT_TEXT = cfg.accentText || (lum(ACCENT) > 0.62 ? '#0f172a' : '#ffffff');
   var WELCOME = cfg.welcome || 'Bonjour ! 👋 Comment puis-je vous aider ?';
   var FAQS = cfg.faqs || [];
   var QUICK = cfg.quick || [];
@@ -54,7 +62,7 @@
     '<div id="cb-quick" style="display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 8px;background:#f7f7fa;"></div>' +
     '<div style="display:flex;gap:8px;padding:10px;border-top:1px solid #eee;background:#fff;">' +
       '<input id="cb-input" type="text" placeholder="Écrivez votre question…" style="flex:1;border:1px solid #ddd;border-radius:8px;padding:9px 12px;font-size:13px;outline:none;">' +
-      '<button id="cb-send" style="background:' + ACCENT + ';color:' + ACCENT_TEXT + ';border:none;border-radius:8px;padding:0 14px;cursor:pointer;font-size:15px;">➤</button>' +
+      '<button id="cb-send" style="background:' + ACCENT + ';color:#fff;border:none;border-radius:8px;padding:0 14px;cursor:pointer;font-size:15px;">➤</button>' +
     '</div>';
 
   document.body.appendChild(btn);
