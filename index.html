@@ -22,6 +22,8 @@
     --green:#25D366;         /* vert WhatsApp officiel */
     --green-2:#1eb85a;
     --green-deep:#0e5c33;
+    --amber:#f5a623;
+    --grad-cta:linear-gradient(135deg,#25D366 0%,#128C7E 100%);
     --ink:#0b141a;
     --text:#eef4ef;
     --muted:#9db3a6;
@@ -55,11 +57,12 @@
   .nav-links a:hover{color:var(--text)}
   .btn{
     display:inline-flex;align-items:center;justify-content:center;gap:8px;
-    background:var(--green);color:var(--ink);font-weight:700;border:none;cursor:pointer;
+    background:var(--grad-cta);color:var(--ink);font-weight:700;border:none;cursor:pointer;
     border-radius:999px;padding:13px 26px;font-size:15.5px;font-family:var(--font);
-    transition:transform .15s,box-shadow .2s,background .2s;
+    transition:transform .2s, box-shadow .2s, filter .2s;
+    box-shadow:0 10px 24px rgba(37,211,102,.28);
   }
-  .btn:hover{background:#2ee872;transform:translateY(-1px);box-shadow:0 10px 30px rgba(37,211,102,.28)}
+  .btn:hover{transform:translateY(-2px);filter:brightness(1.06);box-shadow:0 14px 30px rgba(37,211,102,.4)}
   .btn.ghost{background:transparent;color:var(--text);border:1.5px solid var(--line)}
   .btn.ghost:hover{background:var(--card);box-shadow:none}
   .btn.big{padding:16px 32px;font-size:16.5px}
@@ -366,7 +369,7 @@
     <div>
       <span class="kicker"><span class="dot"></span> L'assistant WhatsApp des TPE &amp; artisans</span>
       <h1>Votre client écrit à 22&nbsp;h.<br><span class="hl">Vous répondez à 9&nbsp;h.</span><br>C'est fini.</h1>
-      <p class="hero-sub">Vos clients vivent sur WhatsApp — et ils écrivent <b>le soir, le week-end, pendant vos chantiers</b>. WhatsApp&nbsp;IA répond à leur place, en français, avec vos horaires et vos tarifs : il prend les rendez-vous, confirme les commandes et vous transfère ce qui est important.</p>
+      <p class="hero-sub">Vos clients écrivent <b>le soir, le week-end, pendant vos chantiers</b> — et passent au concurrent quand vous ne répondez pas. WhatsApp&nbsp;IA répond à leur place, en français, avec vos horaires et vos tarifs : il prend les rendez-vous, confirme les commandes et vous transfère ce qui est important.</p>
       <div class="hero-cta">
         <a class="btn big" href="#essai">Essayer gratuitement 14 jours</a>
         <a class="btn ghost big" href="#offres">Voir les offres</a>
@@ -413,23 +416,26 @@
       <span class="ic">📵</span>
       <div>
         <h3>Un client prêt à payer… qui s'évanouit</h3>
-        <p>« Bonjour, vous êtes ouvert samedi ? » sans réponse à 20 h : il appelle le concurrent, ou il oublie. 9 fois sur 10, vous ne le reverrez jamais.</p>
+        <p>« Bonjour, vous êtes ouvert samedi ? » à 20 h sans réponse : il appelle le concurrent, ou il oublie. 9 fois sur 10, vous ne le revoyez jamais — et ce client avait déjà le portefeuille ouvert.</p>
       </div>
     </div>
     <div class="bande-item reveal">
       <span class="ic">🔁</span>
       <div>
         <h3>Les mêmes questions, 30 fois par jour</h3>
-        <p>« C'est combien ? », « Vous livrez ? », « Il reste une place ? » : votre journée se découpe en réponses répétées que vous connaissez par cœur.</p>
+        <p>« C'est combien ? », « Vous livrez ? », « Il reste une place ? » : votre journée se découpe en réponses répétées que vous connaissez par cœur — pendant que le travail qui paie attend.</p>
       </div>
     </div>
     <div class="bande-item reveal">
       <span class="ic">😴</span>
       <div>
         <h3>Le rendez-vous que vous ne verrez jamais</h3>
-        <p>Un RDV confirmé l'après-midi, oublié le lendemain : un créneau perdu, un client mécontent, du chiffre d'affaires qui part en fumée.</p>
+        <p>Un RDV confirmé à 16 h, oublié à 9 h : un créneau perdu, un client mécontent, du chiffre d'affaires qui s'évapore. Un simple rappel automatique l'aurait sauvé.</p>
       </div>
     </div>
+  </div>
+  <div class="wrap" style="text-align:center;padding-bottom:36px">
+    <a href="outil.html" style="color:var(--amber);font-weight:600;text-decoration:underline;font-size:15.5px">Calculez ce que ces réponses manquées vous coûtent par mois →</a>
   </div>
 </div>
 

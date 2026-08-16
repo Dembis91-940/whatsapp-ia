@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculateur : combien de chiffre d'affaires vous échappe sur WhatsApp ? — WhatsApp IA</title>
+<meta name="description" content="Demandes sans réponse, rendez-vous perdus : calculez en 30 secondes le chiffre d'affaires qui vous échappe chaque mois faute de répondre à temps.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#101a14; --bg-2:#0b120e; --card:#16221a; --card-2:#1a2a20;
+    --line:#23352a; --green:#25D366; --green-2:#1eb85a; --green-deep:#0e5c33;
+    --amber:#f5a623; --ink:#0b141a; --text:#eef4ef; --muted:#9db3a6;
+    --grad-cta:linear-gradient(135deg,#25D366 0%,#128C7E 100%);
+    --font:'Inter',-apple-system,'Helvetica Neue',Segoe UI,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.65;-webkit-font-smoothing:antialiased;min-height:100vh}
+  body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(700px 460px at 85% -10%,rgba(37,211,102,.10),transparent 60%),radial-gradient(600px 420px at -10% 100%,rgba(18,140,126,.12),transparent 60%),var(--bg)}
+  .wrap{max-width:860px;margin:0 auto;padding:0 22px}
+  header{display:flex;align-items:center;gap:14px;padding:24px 0;border-bottom:1px solid var(--line)}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px}
+  .logo .mark{width:34px;height:34px;border-radius:50%;background:var(--grad-cta);display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px}
+  .logo small{display:block;font-size:10.5px;font-weight:600;letter-spacing:1.8px;color:var(--muted);text-transform:uppercase}
+  header a.retour{margin-left:auto;color:var(--green);text-decoration:none;font-weight:600;font-size:14px}
+  header a.retour:hover{color:#7dffb4}
+  .kicker{margin-top:52px;display:inline-block;font-size:12px;font-weight:700;letter-spacing:2.4px;text-transform:uppercase;color:var(--green)}
+  h1{font-size:clamp(28px,3.8vw,40px);font-weight:900;line-height:1.18;letter-spacing:-1px;margin:14px 0 12px}
+  h1 .hl{background:var(--grad-cta);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .intro{color:var(--muted);font-size:16.5px;max-width:640px}
+  .intro strong{color:var(--text)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:36px 38px;margin-top:34px}
+  .champ{margin-bottom:26px}
+  .champ label{display:flex;justify-content:space-between;align-items:baseline;font-size:15px;font-weight:600;margin-bottom:10px}
+  .champ label .val{font-weight:800;font-size:22px;color:var(--green)}
+  .champ input[type=range]{width:100%;accent-color:var(--green);cursor:pointer;height:6px}
+  .range-vals{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin-top:4px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--grad-cta);color:var(--ink);font-weight:800;border:none;cursor:pointer;border-radius:999px;padding:15px 32px;font-size:16px;font-family:var(--font);box-shadow:0 10px 24px rgba(37,211,102,.28);text-decoration:none;transition:transform .2s,box-shadow .2s,filter .2s}
+  .btn:hover{transform:translateY(-2px);filter:brightness(1.06);box-shadow:0 14px 30px rgba(37,211,102,.4)}
+  .btn-ghost{background:transparent;color:var(--text);border:1.5px solid var(--line);box-shadow:none}
+  .btn-ghost:hover{background:var(--card-2);filter:none;box-shadow:none}
+  .resultat{display:none;margin-top:34px}
+  .resultat.visible{display:block;animation:apparaitre .35s ease}
+  @keyframes apparaitre{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .cartes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .r-card{background:var(--card-2);border:1px solid var(--line);border-radius:16px;padding:22px 20px;text-align:center}
+  .r-card .lib{font-size:11.5px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--muted)}
+  .r-card .num{font-size:30px;font-weight:900;margin-top:8px;color:var(--text);line-height:1.1}
+  .r-card .num.g{color:var(--green)}
+  .r-card .num.a{color:var(--amber)}
+  .r-card .sub{font-size:12.5px;color:var(--muted);margin-top:6px}
+  .encart{display:flex;gap:16px;align-items:flex-start;background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.3);border-radius:16px;padding:20px 24px;margin-top:18px}
+  .encart .ico{font-size:26px}
+  .encart p{font-size:15.5px;color:var(--text)}
+  .encart p strong{color:var(--green);font-weight:800}
+  .note{font-size:13px;color:var(--muted);margin-top:16px;text-align:center}
+  .cta-bloc{background:linear-gradient(160deg,var(--green-deep),#0a2f1e);border:1px solid var(--line);border-radius:22px;padding:38px;text-align:center;margin:44px 0 10px}
+  .cta-bloc h2{font-size:clamp(22px,3vw,30px);font-weight:900;letter-spacing:-.5px}
+  .cta-bloc p{color:var(--muted);margin:12px auto 24px;max-width:540px}
+  .cta-bloc .prix{margin-top:16px;font-size:14px;color:var(--muted)}
+  .cta-bloc .prix strong{color:var(--green)}
+  footer{margin-top:56px;padding:26px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;text-align:center}
+  footer a{color:var(--green);text-decoration:none}
+  @media(max-width:640px){.cartes{grid-template-columns:1fr}.card{padding:26px 20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo"><span class="mark">💬</span><span>WhatsApp&nbsp;IA<small>L'assistant des TPE &amp; artisans</small></span></div>
+    <a class="retour" href="index.html">← Retour à l'accueil</a>
+  </header>
+
+  <div class="kicker">Outil gratuit · 30 secondes</div>
+  <h1>Combien de chiffre d'affaires <span class="hl">vous échappe sur WhatsApp ?</span></h1>
+  <p class="intro">Chaque message resté sans réponse est un client qui appelle ailleurs. Ajustez les trois curseurs selon votre activité : le calculateur chiffre ce que <strong>répondre en 2 minutes</strong> vous rendrait chaque mois.</p>
+
+  <div class="card">
+    <div class="champ">
+      <label for="demandes">Demandes reçues par jour (devis, questions, RDV…) <span class="val" id="v-demandes">8</span></label>
+      <input type="range" id="demandes" min="0" max="50" step="1" value="8">
+      <div class="range-vals"><span>0</span><span>50 / jour</span></div>
+    </div>
+    <div class="champ">
+      <label for="part">Part de demandes réellement intéressées <span class="val" id="v-part">60 %</span></label>
+      <input type="range" id="part" min="0" max="100" step="5" value="60">
+      <div class="range-vals"><span>0 %</span><span>100 %</span></div>
+    </div>
+    <div class="champ">
+      <label for="panier">Panier moyen d'une commande / prestation <span class="val" id="v-panier">60 €</span></label>
+      <input type="range" id="panier" min="0" max="500" step="10" value="60">
+      <div class="range-vals"><span>0 €</span><span>500 €</span></div>
+    </div>
+    <div style="text-align:center">
+      <button class="btn" id="calculer">Calculer mes pertes →</button>
+    </div>
+
+    <div class="resultat" id="resultat">
+      <div class="cartes">
+        <div class="r-card">
+          <div class="lib">Clients perdus / mois</div>
+          <div class="num" id="r-perdus">—</div>
+          <div class="sub">sans réponse dans la soirée</div>
+        </div>
+        <div class="r-card">
+          <div class="lib">Chiffre d'affaires perdu</div>
+          <div class="num a" id="r-ca">—</div>
+          <div class="sub">par mois, faute de répondre</div>
+        </div>
+        <div class="r-card">
+          <div class="lib">Récupérable avec l'IA</div>
+          <div class="num g" id="r-gain">—</div>
+          <div class="sub">réponse en 2 min, 7 j/7</div>
+        </div>
+      </div>
+      <div class="encart">
+        <span class="ico">⚡</span>
+        <p><strong id="r-phrase">—</strong> Un assistant WhatsApp qui répond en 2 minutes — avec vos horaires, vos tarifs et vos créneaux — récupère une grande partie de cette somme, y compris à 22 h, le week-end et pendant vos chantiers.</p>
+      </div>
+      <p class="note">Méthode : demandes/jour × 30 jours × part intéressée = demandes chaudes. Sans réponse rapide, environ 80&nbsp;% se perdent (concurrent ou oubli). Une réponse en 2 min en convertit environ 70&nbsp;% — l'IA récupère donc une part réaliste de ces pertes.</p>
+    </div>
+  </div>
+
+  <section class="cta-bloc">
+    <h2>Répondez à 22 h. Sans y être.</h2>
+    <p>Essai gratuit de 14 jours, sans engagement. L'IA reprend la main sur vos messages : rendez-vous pris, commandes confirmées, clients gardés.</p>
+    <a class="btn" href="index.html#essai">Essayer gratuitement 14 jours</a>
+    <p class="prix">Ensuite : <strong>49&nbsp;€/mois</strong> ou <strong>99&nbsp;€/mois</strong> avec transfert d'appels — résiliable à tout moment</p>
+  </section>
+</div>
+
+<footer><a href="index.html">WhatsApp IA</a> — l'assistant WhatsApp des TPE &amp; artisans · Essai gratuit 14 jours</footer>
+
+<script>
+(function(){
+  var fmt = function(n){ return Math.round(n).toLocaleString('fr-FR') + ' €'; };
+  var $ = function(id){ return document.getElementById(id); };
+  function maj(){
+    $('v-demandes').textContent = $('demandes').value;
+    $('v-part').textContent = $('part').value + ' %';
+    $('v-panier').textContent = parseInt($('panier').value,10).toLocaleString('fr-FR') + ' €';
+  }
+  ['demandes','part','panier'].forEach(function(id){
+    $(id).addEventListener('input', maj);
+  });
+  function calculer(){
+    var demandes = parseFloat($('demandes').value) || 0;
+    var part = (parseFloat($('part').value) || 0) / 100;
+    var panier = parseFloat($('panier').value) || 0;
+    var chaudes = demandes * 30 * part;               // demandes chaudes / mois
+    var perdus = chaudes * 0.80;                      // 80 % se perdent sans réponse rapide
+    var caPerdu = perdus * panier;
+    var recupere = caPerdu * 0.70;                    // 70 % convertis avec réponse en 2 min
+    var mois = Math.round(perdus);
+    var annees = Math.round(caPerdu * 12);
+    $('r-perdus').textContent = mois.toLocaleString('fr-FR');
+    $('r-ca').textContent = fmt(caPerdu);
+    $('r-gain').textContent = fmt(recupere);
+    $('r-phrase').textContent = 'Cela représente jusqu\'à ' + fmt(recupere) + ' de chiffre d\'affaires récupérable chaque mois — ' + fmt(annees) + ' par an.';
+    $('resultat').classList.add('visible');
+    $('resultat').scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+  $('calculer').addEventListener('click', calculer);
+  maj();
+  calculer();
+})();
+</script>
+</body>
+</html>
