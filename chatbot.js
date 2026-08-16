@@ -50,7 +50,7 @@
 
   var panel = document.createElement('div');
   panel.id = 'cb-panel';
-  panel.style.cssText = 'position:fixed;bottom:90px;right:20px;width:360px;max-width:calc(100vw - 40px);height:480px;max-height:calc(100vh - 120px);background:#fff;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.25);display:none;flex-direction:column;overflow:hidden;z-index:99999;font-family:inherit;';
+  panel.style.cssText = 'position:fixed;bottom:90px;right:20px;width:360px;max-width:calc(100vw - 40px);height:480px;max-height:calc(100vh - 120px);background:#fff;color:#1f2937;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.25);display:none;flex-direction:column;overflow:hidden;z-index:99999;font-family:inherit;';
   panel.innerHTML =
     '<div style="background:' + ACCENT + ';color:' + ACCENT_TEXT + ';padding:14px 16px;display:flex;align-items:center;gap:10px;">' +
       '<div style="width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:17px;">🤖</div>' +
@@ -58,10 +58,10 @@
       '<div style="font-size:11px;opacity:.9;">' + SUB + '</div></div>' +
       '<button id="cb-close" style="background:none;border:none;color:' + ACCENT_TEXT + ';font-size:18px;cursor:pointer;">✕</button>' +
     '</div>' +
-    '<div id="cb-msgs" style="flex:1;overflow-y:auto;padding:14px;background:#f7f7fa;"></div>' +
+    '<div id="cb-msgs" style="flex:1;overflow-y:auto;padding:14px;background:#f7f7fa;color:#1f2937;"></div>' +
     '<div id="cb-quick" style="display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 8px;background:#f7f7fa;"></div>' +
     '<div style="display:flex;gap:8px;padding:10px;border-top:1px solid #eee;background:#fff;">' +
-      '<input id="cb-input" type="text" placeholder="Écrivez votre question…" style="flex:1;border:1px solid #ddd;border-radius:8px;padding:9px 12px;font-size:13px;outline:none;">' +
+      '<input id="cb-input" type="text" placeholder="Écrivez votre question…" style="flex:1;border:1px solid #ddd;border-radius:8px;padding:9px 12px;font-size:13px;outline:none;color:#1f2937;background:#fff;">' +
       '<button id="cb-send" style="background:' + ACCENT + ';color:#fff;border:none;border-radius:8px;padding:0 14px;cursor:pointer;font-size:15px;">➤</button>' +
     '</div>';
 
@@ -79,7 +79,7 @@
     var d = document.createElement('div');
     d.style.cssText = 'max-width:85%;padding:9px 12px;border-radius:12px;font-size:13px;line-height:1.45;margin-bottom:8px;white-space:pre-wrap;' +
       (who === 'me' ? 'margin-left:auto;background:' + ACCENT + ';color:' + ACCENT_TEXT + ';border-bottom-right-radius:3px;'
-                    : 'background:#fff;border:1px solid #e8e8ee;border-bottom-left-radius:3px;');
+                    : 'background:#fff;border:1px solid #e8e8ee;color:#1f2937;border-bottom-left-radius:3px;');
     d.textContent = text;
     msgs.appendChild(d);
     scrollBottom();
@@ -104,7 +104,7 @@
     var form = document.createElement('div');
     form.style.cssText = 'background:#fff;border:1px solid ' + ACCENT + ';border-radius:12px;padding:12px;margin-bottom:8px;';
     form.innerHTML =
-      '<div style="font-size:12px;color:#666;margin-bottom:8px;">Laissez vos coordonnées, on vous recontacte :</div>' +
+      '<div style="font-size:12px;color:#374151;margin-bottom:8px;">Laissez vos coordonnées, on vous recontacte :</div>' +
       '<input id="cb-lead-name" placeholder="Votre nom" style="width:100%;border:1px solid #ddd;border-radius:7px;padding:7px 10px;font-size:13px;margin-bottom:6px;box-sizing:border-box;">' +
       '<input id="cb-lead-email" type="email" placeholder="Votre email" style="width:100%;border:1px solid #ddd;border-radius:7px;padding:7px 10px;font-size:13px;margin-bottom:6px;box-sizing:border-box;">' +
       '<button id="cb-lead-go" style="width:100%;background:' + ACCENT + ';color:' + ACCENT_TEXT + ';border:none;border-radius:7px;padding:8px;font-size:13px;cursor:pointer;">Envoyer</button>';
