@@ -18,7 +18,7 @@
     var r = parseInt(c.substr(0, 2), 16), g = parseInt(c.substr(2, 2), 16), b = parseInt(c.substr(4, 2), 16);
     return (0.299 * r + 0.587 * g + 0.114 * b) / 255;
   }
-  var ACCENT_TEXT = cfg.accentText || (lum(ACCENT) > 0.62 ? '#0f172a' : '#ffffff');
+  var ACCENT_TEXT = cfg.accentText || (lum(ACCENT) > 0.55 ? '#0f172a' : '#ffffff');
   var WELCOME = cfg.welcome || 'Bonjour ! 👋 Comment puis-je vous aider ?';
   var FAQS = cfg.faqs || [];
   var QUICK = cfg.quick || [];
