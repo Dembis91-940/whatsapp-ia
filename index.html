@@ -3,16 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WhatsApp IA — Votre client écrit à 22 h. Vous répondez à 9 h. C'est fini.</title>
 <meta name="description" content="WhatsApp IA : l'assistant qui répond à vos clients sur WhatsApp 24 h/24 — questions fréquentes, horaires, prise de rendez-vous, rappels. Essai gratuit 14 jours. Standard 49 €/mois, Pro 99 €/mois.">
 <meta property="og:title" content="WhatsApp IA — répondez à vos clients 24 h/24, même endormi">
 <meta property="og:description" content="L'assistant IA qui répond à vos clients sur WhatsApp : rendez-vous, horaires, commandes. Essai gratuit 14 jours.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2325D366'/%3E%3Cpath d='M25 30h30a12 12 0 0 1 12 12v6a12 12 0 0 1-12 12H25z' fill='none' stroke='%23101a14' stroke-width='6'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+
   :root{
     --bg:#101a14;            /* anthracite vert profond */
     --bg-2:#0b120e;
@@ -339,9 +346,161 @@
     .offre.pop{order:-1}
     .offres-grid{display:flex;flex-direction:column}
   }
+
+:root {
+--bg:#0B1210; --bg-2:#07100C; --card:#101D18; --card-2:#152720; --line:#1F3A2C;
+  --green:#25D366; --green-2:#1EB85A; --green-deep:#0E5C33; --amber:#F5A623;
+  --grad-cta:linear-gradient(135deg,#25D366 0%,#128C7E 100%);
+  --ink:#0B141A; --text:#EFFAF2; --muted:#93B4A2;
+  --bubble-in:#1E2D23; --bubble-out:#25D366; --chip:#123A24;
+  --font:'Inter',-apple-system,'Helvetica Neue',Segoe UI,sans-serif;
+}
+
+/* ============ FUTUR V3 — whatsapp-ia ============ */
+:root {
+  --fv-a1:#25D366; --fv-a2:#128C7E; --fv-a3:#14B8A6; --fv-al:#A7F3D0;
+  --fv-bg:#0B1210; --fv-bg2:#101D18; --fv-text:#EFFAF2; --fv-muted:#93B4A2;
+  --fv-tf:'Inter',sans-serif; --fv-bf:'Inter',sans-serif;
+}
+html { scroll-behavior:smooth; }
+body {
+  font-family:var(--fv-bf), system-ui, sans-serif !important;
+  background:#0B1210 !important;
+  color:#EFFAF2 !important;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.title,.sec-title,.kicker,.logo,.brand {
+  font-family:var(--fv-tf), serif !important;
+  letter-spacing:-.01em;
+}
+::selection { background:rgba(37, 211, 102,.4); }
+/* ---------- Fond futuriste ---------- */
+.futur-bg {
+  position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;
+  background:
+    radial-gradient(58% 44% at 16% 10%, rgba(37, 211, 102,.17), transparent 62%),
+    radial-gradient(50% 40% at 88% 22%, rgba(20, 184, 166,.13), transparent 60%),
+    radial-gradient(54% 46% at 60% 94%, rgba(18, 140, 126,.15), transparent 64%),
+    var(--fv-bg);
+}
+.futur-bg::before {
+  content:""; position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(37, 211, 102,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 211, 102,.06) 1px, transparent 1px);
+  background-size:46px 46px;
+  -webkit-mask-image:radial-gradient(ellipse 92% 72% at 50% 0%, #000 32%, transparent 100%);
+          mask-image:radial-gradient(ellipse 92% 72% at 50% 0%, #000 32%, transparent 100%);
+}
+.futur-bg::after {
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(34% 26% at 80% 16%, rgba(37, 211, 102,.12), transparent 70%);
+  animation:fvPulse 9s ease-in-out infinite;
+}
+@keyframes fvPulse {
+  0%,100% { opacity:.5; transform:scale(1); }
+  50% { opacity:1; transform:scale(1.1); }
+}
+/* ---------- Glassmorphism ---------- */
+.scen, .offre, .form-box, .honest-grid, .faq-item, .exemple {
+  background:linear-gradient(160deg, rgba(37, 211, 102,.10), rgba(18, 140, 126,.05)) !important;
+  backdrop-filter:blur(18px) saturate(150%);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);
+  border:1px solid rgba(37, 211, 102,.28) !important;
+  border-radius:22px !important;
+  box-shadow:0 24px 60px -30px rgba(0,0,0,.75), 0 0 0 1px rgba(37, 211, 102,.06), 0 0 46px -14px rgba(37, 211, 102,.30);
+  transition:transform .32s ease, box-shadow .32s ease, border-color .32s ease;
+}
+.scen, .offre, .form-box, .honest-grid, .faq-item, .exemple:hover {
+  transform:translateY(-6px);
+  box-shadow:0 32px 72px -30px rgba(0,0,0,.8), 0 0 0 1px rgba(37, 211, 102,.13), 0 0 66px -10px rgba(37, 211, 102,.45);
+}
+/* ---------- Navigation ---------- */
+nav, .nav, .main-nav {
+  background:rgba(16, 29, 24,.78) !important;
+  backdrop-filter:blur(16px) saturate(170%);
+  -webkit-backdrop-filter:blur(16px) saturate(170%);
+  border-bottom:1px solid rgba(37, 211, 102,.2);
+}
+nav a, .nav a, .main-nav a { color:var(--fv-muted) !important; transition:color .25s, text-shadow .25s; }
+nav a:hover, .nav a:hover, .main-nav a:hover {
+  color:var(--fv-al) !important;
+  text-shadow:0 0 16px rgba(37, 211, 102,.9);
+}
+.logo, .brand { color:var(--fv-text) !important; }
+/* ---------- Boutons ---------- */
+.btn, .btn-primary, .bouton-principal, .cta-en-tete {
+  background:linear-gradient(135deg, #25D366, #128C7E) !important;
+  border:none !important;
+  box-shadow:0 10px 32px -10px rgba(37, 211, 102,.7), 0 0 0 1px rgba(37, 211, 102,.25) !important;
+  transition:transform .25s, box-shadow .25s !important;
+  color:#EFFAF2 !important;
+}
+.btn:hover, .btn-primary:hover, .bouton-principal:hover {
+  transform:translateY(-3px) scale(1.02);
+  box-shadow:0 16px 46px -10px rgba(37, 211, 102,.9), 0 0 24px rgba(37, 211, 102,.35) !important;
+}
+.btn-ghost, .btn-secondary, .bouton-contour {
+  background:rgba(37, 211, 102,.09) !important;
+  border:1px solid rgba(37, 211, 102,.42) !important;
+  color:var(--fv-text) !important;
+  backdrop-filter:blur(8px);
+  transition:transform .25s, background .25s, box-shadow .25s;
+}
+.btn-ghost:hover, .btn-secondary:hover, .bouton-contour:hover {
+  background:rgba(37, 211, 102,.18) !important;
+  box-shadow:0 0 34px -6px rgba(37, 211, 102,.6);
+  transform:translateY(-3px);
+}
+/* ---------- Badges / tags ---------- */
+.badge, .tag, .kicker, .etiquette, .sec-tag, .sur-titre, .num {
+  font-family:var(--fv-tf), serif !important;
+  letter-spacing:.14em; text-transform:uppercase;
+  color:#A7F3D0 !important;
+}
+/* ---------- Champs ---------- */
+input, select, textarea, .champ, .field input, .field select, .form-box input {
+  background:rgba(37, 211, 102,.07) !important;
+  border:1px solid rgba(37, 211, 102,.28) !important;
+  color:var(--fv-text) !important;
+  border-radius:12px !important;
+  transition:border-color .25s, box-shadow .25s;
+}
+input:focus, select:focus, textarea:focus, .champ:focus {
+  border-color:rgba(37, 211, 102,.7) !important;
+  box-shadow:0 0 0 3px rgba(37, 211, 102,.16) !important;
+  outline:none;
+}
+/* ---------- Prix ---------- */
+.prix, .price, .montant { color:#A7F3D0 !important; }
+/* ---------- Réveil ---------- */
+.reveal { opacity:0; transform:translateY(30px); transition:opacity .8s ease, transform .8s ease; }
+.reveal.visible, .reveal.in { opacity:1; transform:none; }
+/* ---------- Titres glow ---------- */
+.title, .sec-title, h1, h2, .hero-title {
+  text-shadow:0 0 46px rgba(37, 211, 102,.28);
+}
+/* ---------- Extra par site ---------- */
+
+   .offre.pop { border-color:rgba(37,211,102,.5); box-shadow:0 0 40px rgba(37,211,102,.2); }
+   .prix { color:var(--a1); }
+   .bubble.out { background:linear-gradient(135deg,var(--a1),var(--a2)) !important; color:#03120a !important; }
+   
+/* ---------- Mobile ---------- */
+@media (max-width:760px) {
+  .futur-bg::before { background-size:32px 32px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation:none !important; transition:none !important; }
+  .reveal { opacity:1; transform:none; }
+}
+
 </style>
 </head>
 <body>
+<div class="futur-bg" aria-hidden="true"></div>
+
 
 <!-- ===================== NAV ===================== -->
 <nav>
@@ -807,6 +966,52 @@
   </div>
 </footer>
 
+
+
+
+
+
+<script>
+/* FUTUR V3 — compteurs animés */
+(function(){
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var sels = [".stat b", ".k-val", ".mini-stat b", "[data-count]"];
+  var els = [];
+  sels.forEach(function(s){ document.querySelectorAll(s).forEach(function(el){ els.push(el); }); });
+  if (!els.length || !("IntersectionObserver" in window)) return;
+  function parse(el){
+    var t = el.textContent.trim().replace(/\u00a0/g," ");
+    var m = t.match(/^(\d[\d\s]*(?:[.,]\d+)?)(.*)$/);
+    if (!m) return null;
+    var num = parseFloat(m[1].replace(/\s/g,"").replace(",", "."));
+    if (isNaN(num) || num > 9999999 || num < -9999999) return null;
+    return { target: num, suffix: m[2] || "", hasDec: /[.,]\d/.test(m[1]) };
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (!en.isIntersecting) return;
+      var el = en.target, p = parse(el);
+      if (!p) { io.unobserve(el); return; }
+      var start = null, dur = 1500;
+      function step(ts){
+        if (!start) start = ts;
+        var pr = Math.min((ts - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - pr, 3);
+        var val = p.target * eased;
+        el.textContent = (p.hasDec ? val.toLocaleString("fr-FR", {maximumFractionDigits:1}) : Math.round(val).toLocaleString("fr-FR")) + p.suffix;
+        if (pr < 1) requestAnimationFrame(step);
+        else el.textContent = (p.hasDec ? p.target.toLocaleString("fr-FR", {maximumFractionDigits:1}) : Math.round(p.target).toLocaleString("fr-FR")) + p.suffix;
+      }
+      requestAnimationFrame(step);
+      io.unobserve(el);
+    });
+  }, { threshold: .4 });
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+
+<script src="chatbot-config.js"></script>
+<script src="chatbot.js"></script>
 <script>
 /* ---------- Reveal au scroll (respecte prefers-reduced-motion) ---------- */
 (function () {
@@ -890,7 +1095,5 @@
   });
 })();
 </script>
-<script src="chatbot-config.js"></script>
-<script src="chatbot.js"></script>
 </body>
 </html>
