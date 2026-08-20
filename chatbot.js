@@ -15,10 +15,11 @@
     var c = (hex || '').replace('#', '');
     if (c.length === 3) c = c.split('').map(function (x) { return x + x; }).join('');
     if (c.length !== 6) return 0.5;
-    var r = parseInt(c.substr(0, 2), 16), g = parseInt(c.substr(2, 2), 16), b = parseInt(c.substr(4, 2), 16);
-    return (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    var r = parseInt(c.substr(0, 2), 16) / 255, g = parseInt(c.substr(2, 2), 16) / 255, b = parseInt(c.substr(4, 2), 16) / 255;
+    function f(v) { return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }
+    return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);
   }
-  var ACCENT_TEXT = cfg.accentText || (lum(ACCENT) > 0.55 ? '#0f172a' : '#ffffff');
+  var ACCENT_TEXT = cfg.accentText || (lum(ACCENT) > 0.183 ? '#0f172a' : '#ffffff');
   var WELCOME = cfg.welcome || 'Bonjour ! 👋 Comment puis-je vous aider ?';
   var FAQS = cfg.faqs || [];
   var QUICK = cfg.quick || [];
