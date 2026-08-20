@@ -1,0 +1,11 @@
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.p8
+secrets*
+*.csv
+*.xlsx
+leads*
+.DS_Store
